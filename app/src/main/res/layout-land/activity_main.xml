@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.promoclicks.task.ui.home.HomeActivityViewModel" />
+
+        <variable
+            name="OffersAdapter"
+            type="com.promoclicks.task.ui.home.adapters.offers.OffersAdapter" />
+
+        <variable
+            name="SponsorsAdapter"
+            type="com.promoclicks.task.ui.home.adapters.sponsors.SponsorsAdapter" />
+
+        <variable
+            name="VendorsAdapter"
+            type="com.promoclicks.task.ui.home.adapters.vendors.VendorsAdapter" />
+
+        <variable
+            name="ProductsAdapter"
+            type="com.promoclicks.task.ui.home.adapters.products.ProductsAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        tools:context=".ui.home.HomeActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_top_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".45" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profile_Iv"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/space_16"
+            android:elevation="@dimen/space_2"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{viewModel.image}"
+            app:loadImageProgress="@{progressImage}" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressImage"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:theme="@style/Theme.MyCircularProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_Iv"
+            app:layout_constraintEnd_toEndOf="@+id/profile_Iv"
+            app:layout_constraintStart_toStartOf="@+id/profile_Iv"
+            app:layout_constraintTop_toTopOf="@+id/profile_Iv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_nameTv"
+            style="@style/Widget.Task.TextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="@dimen/space_2"
+            android:text="@{String.format(@string/user_name,viewModel.userName)}"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_Iv"
+            app:layout_constraintEnd_toStartOf="@+id/notification_Iv"
+            app:layout_constraintStart_toEndOf="@+id/profile_Iv"
+            app:layout_constraintTop_toTopOf="@+id/profile_Iv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notification_Iv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/space_16"
+            android:background="@drawable/bbg_button"
+            android:elevation="@dimen/space_2"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="@dimen/space_4"
+            android:scaleType="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notification" />
+
+        <LinearLayout
+            android:layout_width="@dimen/space_16"
+            android:layout_height="@dimen/space_16"
+            android:background="@drawable/bg_badge"
+            android:elevation="@dimen/space_4"
+            android:padding="@dimen/space_2"
+            app:layout_constraintEnd_toEndOf="@+id/notification_Iv"
+            app:layout_constraintTop_toTopOf="@+id/notification_Iv"
+            app:layout_constraintVertical_bias=".01">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notification_count"
+                style="@style/Widget.Task.NotificationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="1" />
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/searchEt"
+            style="@style/search_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_nameTv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sort_Iv"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="?selectableItemBackground"
+            android:elevation="@dimen/space_4"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="@dimen/space_4"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="@+id/searchEt"
+            app:layout_constraintEnd_toEndOf="@+id/searchEt"
+            app:layout_constraintHorizontal_bias=".95"
+            app:layout_constraintStart_toStartOf="@+id/searchEt"
+            app:layout_constraintTop_toTopOf="@+id/searchEt"
+            app:srcCompat="@drawable/ic_search_right" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:visibility="@{viewModel.isLoading()?View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEt">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space_16">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/offerBanner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:splitMotionEvents="false"
+                    app:adapter="@{OffersAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintBottom_toTopOf="@+id/sponsors_Tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/offer_item_home" />
+
+                <me.relex.circleindicator.CircleIndicator2
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+
+                    app:attachRecyclerViewIndicator="@{offerBanner}"
+                    app:ci_drawable="@drawable/offer_circle_indicator_selected"
+                    app:ci_drawable_unselected="@drawable/offer_circle_indicator_unselected"
+                    app:layout_constraintBottom_toBottomOf="@+id/offerBanner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/offerBanner"
+                    app:layout_constraintVertical_bias=".89" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sponsors_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_16"
+                    android:text="@string/sponsors"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerFont"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/offerBanner" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sponsers_Rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_16"
+                    android:splitMotionEvents="false"
+                    app:adapter="@{SponsorsAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sponsors_Tv"
+                    tools:listitem="@layout/sponser_item_home" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/vendors_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_8"
+                    android:text="@string/Vendors"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerFont"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sponsers_Rv" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/vendors_Rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_8"
+                    android:splitMotionEvents="false"
+                    app:adapter="@{VendorsAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vendors_Tv"
+                    tools:listitem="@layout/vendors_item_home" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hotDiscount_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_8"
+                    android:text="@string/hotDiscount"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerFont"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/vendors_Rv" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hotDiscount_Rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_8"
+                    android:splitMotionEvents="false"
+                    app:adapter="@{ProductsAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hotDiscount_Tv"
+                    app:spanCount="@integer/offers_count"
+                    tools:listitem="@layout/hotdiscount_item_home" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressNested"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:theme="@style/Theme.MyCircularProgress"
+            android:visibility="@{viewModel.isLoading()?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/nested"
+            app:layout_constraintEnd_toEndOf="@+id/nested"
+            app:layout_constraintStart_toStartOf="@+id/nested"
+            app:layout_constraintTop_toTopOf="@+id/nested" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

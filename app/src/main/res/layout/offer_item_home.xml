@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Item"
+            type="com.promoclicks.data.response.Slider" />
+
+        <variable
+            name="OffersPageListener"
+            type="com.promoclicks.task.ui.home.adapters.offers.OffersPageListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_offer_home"
+        android:padding="@dimen/space_2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/offer_Iv"
+            android:layout_width="0dp"
+            android:layout_height="175dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{Item.image}"
+            app:loadImageProgress="@{progressImage}"
+            tools:src="@android:mipmap/sym_def_app_icon" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".45" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressImage"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:theme="@style/Theme.MyCircularProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/offer_Iv"
+            app:layout_constraintEnd_toEndOf="@+id/offer_Iv"
+            app:layout_constraintStart_toStartOf="@+id/offer_Iv"
+            app:layout_constraintTop_toTopOf="@+id/offer_Iv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/offer_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_4"
+            android:text="@{Item.name}"
+            android:textColor="@color/purple_500"
+            android:textSize="@dimen/secondFont"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/offer_Iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".15"
+            tools:text="Halloween Offer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/offer_text_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_4"
+            android:text="@{Item.title}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/mainFont"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/offer_Iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offer_Tv"
+            tools:text="20% off in our All products" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_offer_button"
+            android:onClick="@{(v)->OffersPageListener.onShopClick(v,Item)}"
+            android:text="@string/shopNow"
+            android:textColor="@color/white"
+            android:textSize="@dimen/secondFont"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/offer_Iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/offer_text_Tv" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Task</string>
+    <string name="user_name">Hi %1$s, \n  Find Your Favorite Items</string>
+    <string name="shopNow">SHOP  NOW</string>
+    <string name="sponsors">Sponsors</string>
+    <string name="Vendors">Vendors</string>
+    <string name="hotDiscount">Hot Discount</string>
+    <string name="search">Search..</string>
+    <string name="priceOld"><strike>$%1$s</strike></string>
+    <string name="priceNew"><strike>$%1$s</strike></string>
+</resources>

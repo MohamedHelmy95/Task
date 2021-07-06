@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Item"
+            type="com.promoclicks.data.response.Sponsor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sponser_Iv"
+            android:layout_width="59dp"
+            android:layout_height="59dp"
+            android:padding="@dimen/space_4"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{Item.image}"
+            app:loadImageProgress="@{progressImage}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressImage"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:theme="@style/Theme.MyCircularProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/sponser_Iv"
+            app:layout_constraintEnd_toEndOf="@+id/sponser_Iv"
+            app:layout_constraintStart_toStartOf="@+id/sponser_Iv"
+            app:layout_constraintTop_toTopOf="@+id/sponser_Iv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

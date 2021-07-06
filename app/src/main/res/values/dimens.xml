@@ -1,0 +1,13 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="space_2">2dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_20">20dp</dimen>
+    <dimen name="space_50">50dp</dimen>
+    <dimen name="headerFont">18sp</dimen>
+    <dimen name="mainFont">15sp</dimen>
+    <dimen name="badgeFont">10sp</dimen>
+    <dimen name="secondFont">12sp</dimen>
+</resources>

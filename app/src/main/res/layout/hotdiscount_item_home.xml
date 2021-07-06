@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="Item"
+            type="com.promoclicks.data.response.HotProductPaidStatu" />
+
+        <variable
+            name="ProductsClickListener"
+            type="com.promoclicks.task.ui.home.adapters.products.ProductsClickListener" />
+
+        <variable
+            name="Position"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_2"
+        android:background="?selectableItemBackground"
+        android:onClick="@{(v)->ProductsClickListener.onItemClick(v,Item)}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{Item.image}"
+            app:loadImageProgress="@{progressImage}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressImage"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:theme="@style/Theme.MyCircularProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
+            app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_Iv"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@{Item.selected?@drawable/fab_selected_g:@drawable/bg_fab_unselected}"
+            android:elevation="@dimen/space_4"
+            android:onClick="@{(v)->ProductsClickListener.onFabClick(v,Item,Position)}"
+            android:padding="@dimen/space_8"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+            app:loadDrawable="@{Item.selected}" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/space_4"
+            app:cardElevation="@dimen/space_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_Iv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/itemName_Tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_4"
+                    android:text="@{Item.name}"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/headerFont"
+                    android:textStyle="bold"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/oldPrice_Tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_4"
+                    android:text="@{String.format(@string/priceOld,Item.oldPriceString)}"
+                    android:textAlignment="center"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/secondFont"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/newPrice_Tv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemName_Tv"
+                    app:strikeThrough="@{true}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/newPrice_Tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_4"
+                    android:text="@{String.format(@string/priceNew,Item.newPriceString)}"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_700"
+                    android:textSize="@dimen/secondFont"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/oldPrice_Tv"
+                    app:layout_constraintTop_toBottomOf="@+id/itemName_Tv" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/space_16"
+                    android:layout_height="@dimen/space_16"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="@+id/endDate_Tv"
+                    app:layout_constraintEnd_toStartOf="@+id/endDate_Tv"
+                    app:layout_constraintTop_toBottomOf="@+id/newPrice_Tv"
+                    app:srcCompat="@drawable/ic_baseline_calendar" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/endDate_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_8"
+                    android:text="@{Item.days}"
+                    android:textAlignment="center"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/secondFont"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/newPrice_Tv" />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:id="@+id/rating"
+                    style="@style/foodRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:padding="@dimen/space_4"
+                    android:rating="@{Item.floatRate}"
+                    android:stepSize="0.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/endDate_Tv" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/rating_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/space_4"
+                    android:text="@{Item.ratings}"
+                    android:textAlignment="center"
+                    android:textColor="@color/greyDark"
+                    android:textSize="@dimen/secondFont"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/rating"
+                    app:layout_constraintTop_toTopOf="@+id/rating" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

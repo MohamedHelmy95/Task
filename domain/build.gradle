@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+apply from: '../dependencies.gradle'
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildToolsVersion
+
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+    }
+
+
+    buildTypes {
+        release {
+            buildConfigField 'String', 'baseUrl', '"https://demo.promoclicks.net/new-qraib/public/api/"'
+        }
+        debug {
+            buildConfigField 'String', 'baseUrl', '"https://demo.promoclicks.net/new-qraib/public/api/"'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':data')
+
+
+    // network
+    api "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+    api "com.squareup.retrofit2:converter-gson:$versions.retrofitVersion"
+
+    api "javax.inject:javax.inject:1"
+
+    // debug
+    api "com.jakewharton.timber:timber:$versions.timberVersion"
+
+
+}
